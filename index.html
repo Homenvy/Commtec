@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommTec | IT Solutions & Home Technology | Las Vegas, NV</title>
+    <meta name="description" content="Las Vegas' premier provider of IT solutions, CCTV surveillance, and home theater systems. 15+ years serving Nevada businesses and residents.">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Tailwind via CDN (replace with built CSS in production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4cdcdf',
+                        primaryDark: '#3ab4b7',
+                        primaryLight: '#b6f0f2',
+                        dark: '#111827',
+                        darker: '#0a0f1a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom Styles */
+        :root {
+            --gradient-start: #0c2e2f;
+            --gradient-mid: #1a6b6d;
+            --gradient-end: #4cdcdf;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(76, 220, 223, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(76, 220, 223, 0.2);
+            border-color: rgba(76, 220, 223, 0.3);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+        }
+        
+        /* Accessibility Focus Styles */
+        *:focus {
+            outline: 2px solid #b6f0f2;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-darker text-gray-200 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="bg-primary text-gray-900 p-2 rounded-lg mr-2">
+                            <i class="fas fa-network-wired text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Comm<span class="text-primary">Tec</span></span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#home" class="border-b-2 border-primary text-white px-1 pt-1 text-sm font-medium">Home</a>
+                        <a href="#services" class="text-gray-300 hover:text-white px-1 pt-1 text-sm font-medium">Services</a>
+                        <a href="#about" class="text-gray-300 hover:text-white px-1 pt-1 text-sm font-medium">About</a>
+                        <a href="#contact" class="text-gray-300 hover:text-white px-1 pt-1 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center">
+                    <a href="#contact" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-primary hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryLight">
+                        Get a Quote
+                    </a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false">
+                        <span class="sr-only">Open menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1 px-2">
+                <a href="#home" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#services" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <div class="mt-4 px-3">
+                    <a href="#contact" class="block w-full px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900 bg-primary hover:bg-primaryDark text-center">
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white relative overflow-hidden">
+        <div class="bg-noise absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+            <div class="md:flex items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+                        <span class="block">Your Trusted Tech Partner</span>
+                        <span class="text-primaryLight">in Las Vegas</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-primaryLight max-w-lg">
+                        Complete IT solutions, surveillance systems, and premium home theaters — all under one roof.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-lg text-lg font-semibold text-center transition duration-300 shadow-lg flex items-center justify-center">
+                            Get Started <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="tel:7028812090" class="bg-primaryDark text-white hover:bg-[#2a9a9d] px-6 py-3 rounded-lg text-lg font-semibold text-center transition duration-300 shadow-lg flex items-center justify-center">
+                            <i class="fas fa-phone mr-2"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="CommTec team working on network installation" 
+                         class="rounded-xl shadow-2xl animate-float max-w-full h-auto"
+                         loading="lazy"
+                         width="1200" height="800">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating CTA for mobile -->
+        <div class="md:hidden fixed bottom-6 left-0 right-0 px-4 z-40">
+            <a href="tel:7028812090" class="block bg-primary text-white py-3 px-6 rounded-full shadow-xl text-center font-bold animate-pulse">
+                <i class="fas fa-phone mr-2"></i> Call Now: (702) 881-2090
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-3">
+                    Our <span class="text-primary">Specialized Services</span>
+                </h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Comprehensive solutions for businesses and homes in the Las Vegas area
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">Managed IT Services</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Proactive monitoring and maintenance to keep your business running smoothly 24/7.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Network monitoring</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Data backup solutions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Help desk support</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Get Managed IT <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-video text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">Video Surveillance</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Custom CCTV solutions for complete property security and peace of mind.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>24/7 recording</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Motion detection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Remote monitoring</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Get Surveillance <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-network-wired text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">Network Infrastructure</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Robust wired and wireless solutions tailored to your space and needs.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Business WiFi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Enterprise networks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Fiber optic cabling</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Upgrade Network <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-database text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">Data Management</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Secure storage, backup, and recovery solutions for critical business data.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Cloud backups</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Disaster recovery</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Data encryption</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Protect Data <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-headset text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">IT Consulting</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Strategic technology planning to align with your business goals.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Technology audits</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Budget planning</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Vendor selection</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Consult Experts <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0 bg-[#1a6b6d] p-3 rounded-lg">
+                                <i class="fas fa-volume-up text-primary text-xl"></i>
+                            </div>
+                            <h3 class="ml-3 text-lg font-semibold text-white">Audio/Visual Systems</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Premium home theaters and commercial AV installations.
+                        </p>
+                        <ul class="space-y-2 text-gray-300 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Home theaters</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Whole-home audio</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Conference systems</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-flex items-center text-primary hover:text-primaryLight text-sm font-medium">
+                            Design AV System <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-primary text-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-5xl font-bold mb-2">15+</div>
+                    <div class="text-xl font-medium">Years of Experience</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl font-bold mb-2">24/7</div>
+                    <div class="text-xl font-medium">Support Available</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl font-bold mb-2">100%</div>
+                    <div class="text-xl font-medium">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-6">
+                        Why <span class="text-primary">Choose CommTec</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        As Las Vegas natives with over 15 years in the tech industry, we bridge the gap between enterprise IT solutions and premium residential systems. Our team delivers stress-free technology tailored to Nevada's unique needs.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        From casino backbones to smart homes, we've installed and maintained systems across the valley with a focus on reliability and white-glove service.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="flex items-center justify-center h-6 w-6 rounded-md bg-primary text-white">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-base text-gray-300">
+                                <span class="font-medium">Certified Experts</span> - Professionals you can trust
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="flex items-center justify-center h-6 w-6 rounded-md bg-primary text-white">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-base text-gray-300">
+                                <span class="font-medium">Local Knowledge</span> - We understand Vegas' unique tech challenges
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="flex items-center justify-center h-6 w-6 rounded-md bg-primary text-white">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-base text-gray-300">
+                                <span class="font-medium">Proactive Maintenance</span> - We prevent issues before they occur
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Client logos marquee -->
+                    <div class="mt-12 overflow-hidden">
+                        <div class="flex items-center space-x-12 animate-marquee whitespace-nowrap">
+                            <span class="text-gray-400 font-medium">Trusted By:</span>
+                            <span class="text-white">Casino Operators</span>
+                            <i class="fas fa-circle text-gray-600 text-xs"></i>
+                            <span class="text-white">Hotels</span>
+                            <i class="fas fa-circle text-gray-600 text-xs"></i>
+                            <span class="text-white">Medical Practices</span>
+                            <i class="fas fa-circle text-gray-600 text-xs"></i>
+                            <span class="text-white">Restaurants</span>
+                            <i class="fas fa-circle text-gray-600 text-xs"></i>
+                            <span class="text-white">Homeowners</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="CommTec team working together" 
+                             class="w-full h-auto object-cover min-h-[400px]"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Stats overlay -->
+                    <div class="absolute -bottom-6 left-0 right-0 mx-6 bg-[#1a6b6d] p-6 rounded-xl shadow-lg text-center">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <div class="text-3xl font-bold text-white"></div>
+                                <div class="text-sm text-primaryLight"></div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-white"></div>
+                                <div class="text-sm text-primaryLight"></div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-white"></div>
+                                <div class="text-sm text-primaryLight"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-primaryDark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                        Ready to upgrade your technology?
+                    </h2>
+                    <p class="mt-3 max-w-3xl text-lg text-primaryLight">
+                        Schedule a free consultation with our Vegas tech experts today.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end">
+                    <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-primaryDark bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors">
+                        Get Your Free Assessment
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16">
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-6">
+                        Contact <span class="text-primary">CommTec</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Have questions about our services or ready to get started? Our Vegas-based team is here to help!
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary text-white">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">Call Us Directly</h3>
+                                <p class="mt-1 text-gray-300">
+                                    <a href="tel:7028812090" class="hover:text-primary transition-colors">(702) 881-2090</a><br>
+                                    <a href="tel:7026283889" class="hover:text-primary transition-colors">(702) 628-3889</a>
+                                </p>
+                                <p class="mt-2 text-sm text-primaryLight">
+                                    Emergency? Call anytime—we're here to help.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary text-white">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">Email Us</h3>
+                                <p class="mt-1 text-gray-300">
+                                    <a href="mailto:Commteclv@gmail.com" class="hover:text-primary transition-colors">Commteclv@gmail.com</a><br>
+                                    Responses within <span class="text-primaryLight">24 business hours</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary text-white">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">Business Hours</h3>
+                                <p class="mt-1 text-gray-300">
+                                    Mon–Fri: 8 AM – 6 PM<br>
+                                    Sat: 9 AM – 2 PM<br>
+                                    Sun: Closed <span class="text-primaryLight">(Emergency support available)</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Service Area Map -->
+                        <div class="mt-8">
+                            <h3 class="text-lg font-medium text-white mb-3">Service Area</h3>
+                            <div class="rounded-lg overflow-hidden shadow-md">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211256.03405547115!2d-115.3153986!3d36.12491845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80beb782a4f57dd1%3A0x3accd5e6d5b379a3!2sLas%20Vegas%2C%20NV!5e0!3m2!1sen!2sus!4v1689873600000!5m2!1sen!2sus" 
+                                        width="100%" 
+                                        height="200" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        class="grayscale hover:grayscale-0 transition-all duration-300"></iframe>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-400">
+                                Serving all of Las Vegas and surrounding areas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-gray-700 p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-white mb-2">Send Us a Message</h3>
+                    <p class="text-gray-400 mb-6">We'll respond within 24 hours!</p>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-gray-300 mb-1">Service Needed</label>
+                            <select id="service" name="service" 
+                                    class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-primary focus:border-primary">
+                                <option value="">Select a service</option>
+                                <option value="Managed IT">Managed IT Services</option>
+                                <option value="Surveillance">Video Surveillance</option>
+                                <option value="Network">Network Infrastructure</option>
+                                <option value="Data">Data Management</option>
+                                <option value="Consulting">IT Consulting</option>
+                                <option value="AV">Audio/Visual Systems</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message *</label>
+                            <textarea id="message" name="message" rows="4" required 
+                                      class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input id="consent" name="consent" type="checkbox" required 
+                                   class="h-4 w-4 text-primary focus:ring-primary border-gray-600 rounded bg-gray-800">
+                            <label for="consent" class="ml-2 block text-sm text-gray-300">
+                                I consent to CommTec contacting me about my inquiry
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                                Send Message
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary text-gray-900 p-2 rounded-lg mr-2">
+                            <i class="fas fa-network-wired text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Comm<span class="text-primary">Tec</span></span>
+                    </div>
+                    <p class="text-sm mb-4">
+                        Las Vegas' premier provider of IT solutions, surveillance systems, and home theater installations.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Managed IT</a></li>
+                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Video Surveillance</a></li>
+                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Network Setup</a></li>
+                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Data Management</a></li>
+                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Home Theaters</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-sm hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-sm hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Testimonials</a></li>
+                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="text-center md:text-left">
+                        <p class="text-xs">
+                            &copy; 2023 CommTec. All rights reserved.
+                        </p>
+                    </div>
+                    <div class="mt-4 md:mt-0 flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-xs hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-xs hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="text-xs hover:text-primary transition-colors">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Counter animation
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Intersection Observer for counter animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('yearsCounter', 15);
+                    animateCounter('clientsCounter', 500);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('#services'));
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Thank you for your message! We will contact you shortly.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
