@@ -604,7 +604,6 @@
             <!-- Left Column (Contact Info) - Narrower -->
             <div class="lg:w-1/3">
                 <!-- $$$ PASTE YOUR EXISTING CONTACT INFO HERE $$$ -->
-                <!-- (Keep your address, phone, hours, map, etc.) -->
             </div>
             
             <!-- Right Column (Wide Form) - Takes 2/3 of space -->
@@ -617,19 +616,19 @@
                 </div>
                 
                 <!-- Wide Form -->
-                <form id="contactForm" action="https://formspree.io/f/mwpodnpr" method="POST" class="space-y-7">
+                <form id="contactForm" class="space-y-7">
                     <!-- Name + Email Row -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
                         <div>
-                            <label class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Full Name *</label>
-                            <input type="text" name="name" required 
+                            <label for="name" class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
                                    class="w-full bg-gray-800 border-2 border-gray-600 rounded-xl py-4 px-5 text-white text-lg
                                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                    placeholder="John Smith">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Email *</label>
-                            <input type="email" name="email" required 
+                            <label for="email" class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Email *</label>
+                            <input type="email" id="email" name="email" required 
                                    class="w-full bg-gray-800 border-2 border-gray-600 rounded-xl py-4 px-5 text-white text-lg
                                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                    placeholder="your@email.com">
@@ -639,15 +638,15 @@
                     <!-- Phone + Service Row -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
                         <div>
-                            <label class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Phone</label>
-                            <input type="tel" name="phone"
+                            <label for="phone" class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Phone</label>
+                            <input type="tel" id="phone" name="phone"
                                    class="w-full bg-gray-800 border-2 border-gray-600 rounded-xl py-4 px-5 text-white text-lg
                                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                    placeholder="(702) 555-1234">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Service *</label>
-                            <select name="service" required
+                            <label for="service" class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Service *</label>
+                            <select id="service" name="service" required
                                     class="w-full bg-gray-800 border-2 border-gray-600 rounded-xl py-4 px-5 text-white text-lg
                                            focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="" disabled selected>Select Service</option>
@@ -661,8 +660,8 @@
 
                     <!-- Message Box -->
                     <div>
-                        <label class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Project Details *</label>
-                        <textarea name="message" rows="6" required
+                        <label for="message" class="block text-sm font-bold text-white mb-2 uppercase tracking-wider">Project Details *</label>
+                        <textarea id="message" name="message" rows="6" required
                                   class="w-full bg-gray-800 border-2 border-gray-600 rounded-xl py-4 px-5 text-white text-lg
                                          focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                   placeholder="Tell us about your project..."></textarea>
@@ -704,9 +703,19 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
             
             try {
-                const response = await fetch(form.action, {
+                // Manually construct FormData to ensure no empty values
+                const formData = new FormData();
+                
+                // Add only fields with values
+                if (form.name.value) formData.append('name', form.name.value);
+                if (form.email.value) formData.append('email', form.email.value);
+                if (form.phone.value) formData.append('phone', form.phone.value);
+                if (form.service.value) formData.append('service', form.service.value);
+                if (form.message.value) formData.append('message', form.message.value);
+                
+                const response = await fetch('https://formspree.io/f/mwpodnpr', {
                     method: 'POST',
-                    body: new FormData(form),
+                    body: formData,
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -744,132 +753,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-primary text-gray-900 p-2 rounded-lg mr-2">
-                            <i class="fas fa-network-wired text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold text-white">Comm<span class="text-primary">Tec</span></span>
-                    </div>
-                    <p class="text-sm mb-4">
-                        Las Vegas' premier provider of IT solutions, surveillance systems, and home theater installations.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Managed IT</a></li>
-                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Video Surveillance</a></li>
-                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Network Setup</a></li>
-                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Data Management</a></li>
-                        <li><a href="#services" class="text-sm hover:text-primary transition-colors">Home Theaters</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-sm hover:text-primary transition-colors">About Us</a></li>
-                        <li><a href="#contact" class="text-sm hover:text-primary transition-colors">Contact</a></li>
-                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Testimonials</a></li>
-                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Careers</a></li>
-                        <li><a href="#" class="text-sm hover:text-primary transition-colors">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="mt-12 pt-8 border-t border-gray-800">
-                <div class="md:flex md:items-center md:justify-between">
-                    <div class="text-center md:text-left">
-                        <p class="text-xs">
-                            &copy; 2023 CommTec. All rights reserved.
-                        </p>
-                    </div>
-                    <div class="mt-4 md:mt-0 flex justify-center md:justify-end space-x-6">
-                        <a href="#" class="text-xs hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="text-xs hover:text-primary transition-colors">Terms of Service</a>
-                        <a href="#" class="text-xs hover:text-primary transition-colors">Sitemap</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Counter animation
-        function animateCounter(elementId, target, duration = 2000) {
-            const element = document.getElementById(elementId);
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    clearInterval(timer);
-                    current = target;
-                }
-                element.textContent = Math.floor(current);
-            }, 16);
-        }
-
-        // Intersection Observer for counter animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter('yearsCounter', 15);
-                    animateCounter('clientsCounter', 500);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(document.querySelector('#services'));
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send the form data to your server
-            alert('Thank you for your message! We will contact you shortly.');
-            this.reset();
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
