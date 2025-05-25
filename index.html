@@ -600,66 +600,72 @@
      <!-- Contact Form Section -->
 <section id="contact" class="py-20 bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-16">
-            <!-- Left Column (Contact Info) -->
+        <div class="lg:grid lg:grid-cols-2 lg:gap-12">
+            <!-- Left Column (Keep your existing contact info) -->
             <div class="mb-12 lg:mb-0">
-                <!-- ... (keep your existing contact info content) ... -->
+                <!-- $$$ YOUR EXISTING CONTACT INFO STAYS HERE $$$ -->
             </div>
             
-            <!-- Right Column (Form) -->
-            <div class="bg-gray-700 p-8 rounded-xl shadow-lg">
-                <h3 class="text-xl font-semibold text-white mb-2">Send Us a Message</h3>
-                <p class="text-gray-400 mb-6">We'll respond within 24 hours!</p>
+            <!-- Right Column (Enhanced Form) -->
+            <div class="bg-gray-700 p-10 rounded-2xl shadow-xl border border-gray-600/30">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-white mb-2">Send Us a Message</h3>
+                    <div class="w-16 h-1 bg-primary mx-auto mb-4"></div>
+                    <p class="text-lg text-primaryLight">We typically respond within 1 business day</p>
+                </div>
                 
-                <!-- Formspree Form -->
                 <form id="contactForm" action="https://formspree.io/f/mwpodnpr" method="POST" class="space-y-6">
-                    <!-- Honeypot Field -->
                     <input type="text" name="_gotcha" style="display:none">
                     
-                    <!-- Name Field -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name *</label>
-                        <input 
-                            type="text" 
-                            id="name" 
-                            name="name" 
-                            required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
-                        >
+                    <!-- Two Column Layout for Name/Email -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-white mb-2">Full Name *</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                class="block w-full bg-gray-800 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="Your name"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-white mb-2">Email *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                class="block w-full bg-gray-800 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="your@email.com"
+                            >
+                        </div>
                     </div>
                     
-                    <!-- Email Field -->
+                    <!-- Phone -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email *</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
-                        >
-                    </div>
-                    
-                    <!-- Phone Field -->
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+                        <label for="phone" class="block text-sm font-semibold text-white mb-2">Phone Number</label>
                         <input 
                             type="tel" 
                             id="phone" 
                             name="phone" 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
+                            class="block w-full bg-gray-800 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="(702) 555-1234"
                         >
                     </div>
                     
                     <!-- Service Dropdown -->
                     <div>
-                        <label for="service" class="block text-sm font-medium text-gray-300 mb-1">Service Needed</label>
+                        <label for="service" class="block text-sm font-semibold text-white mb-2">Service Needed *</label>
                         <select 
                             id="service" 
                             name="service" 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-primary focus:border-primary"
+                            required
+                            class="block w-full bg-gray-800 border-2 border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         >
-                            <option value="">Select a service</option>
+                            <option value="" disabled selected>Select a service</option>
                             <option value="Managed IT">Managed IT Services</option>
                             <option value="Surveillance">Video Surveillance</option>
                             <option value="Network">Network Infrastructure</option>
@@ -670,40 +676,27 @@
                         </select>
                     </div>
                     
-                    <!-- Message Field -->
+                    <!-- Message -->
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message *</label>
+                        <label for="message" class="block text-sm font-semibold text-white mb-2">Message *</label>
                         <textarea 
                             id="message" 
                             name="message" 
-                            rows="4" 
+                            rows="5" 
                             required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
+                            class="block w-full bg-gray-800 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="Tell us about your project..."
                         ></textarea>
                     </div>
                     
-                    <!-- Consent Checkbox -->
-                    <div class="flex items-center">
-                        <input 
-                            id="consent" 
-                            name="consent" 
-                            type="checkbox" 
-                            required 
-                            class="h-4 w-4 text-primary focus:ring-primary border-gray-600 rounded bg-gray-800"
-                        >
-                        <label for="consent" class="ml-2 block text-sm text-gray-300">
-                            I consent to CommTec contacting me about my inquiry
-                        </label>
-                    </div>
-                    
                     <!-- Submit Button -->
-                    <div>
+                    <div class="pt-2">
                         <button 
                             type="submit" 
-                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+                            class="w-full flex justify-center items-center py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-bold text-white bg-primary hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 transform hover:scale-[1.02]"
                         >
-                            Send Message
-                            <i class="fas fa-paper-plane ml-2"></i>
+                            <i class="fas fa-paper-plane mr-3"></i>
+                            Send Message Now
                         </button>
                     </div>
                 </form>
