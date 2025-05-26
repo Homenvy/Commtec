@@ -613,6 +613,10 @@
                 
                 <!-- Formspree Form -->
                 <form id="contactForm" action="https://formspree.io/f/mwpodnpr" method="POST" class="space-y-5 sm:space-y-6">
+    <input type="hidden" name="_subject" value="New Contact Form Submission">
+    <input type="hidden" name="_replyto" value="noreply@yourdomain.com">
+    <!-- Rest of your form fields -->
+</form>
                     <!-- Honeypot Field -->
                     <input type="text" name="_gotcha" style="display:none">
                     
@@ -789,69 +793,76 @@
 
 <!-- JavaScript Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-});
-
-// Form submission handler (ONLY NEED ONE VERSION OF THIS)
-document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
     
-    submitButton.disabled = true;
-    submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
-    
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log("Form submission initiated");
+            
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
+            
+            try {
+                console.log("Preparing FormData");
+                const formData = new FormData(form);
+                
+                // For debugging - log all form values
+                for (let [key, value] of formData.entries()) {
+                    console.log(key + ": " + value);
+                }
+                
+                console.log("Sending to Formspree...");
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                console.log("Received response, status:", response.status);
+                const responseData = await response.json();
+                console.log("Full response:", responseData);
+                
+                if (response.ok) {
+                    console.log("Form submitted successfully");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message Sent!',
+                        text: 'Thank you! We will contact you shortly.',
+                        confirmButtonColor: '#4cdcdf',
+                    });
+                    form.reset();
+                } else {
+                    console.error("Formspree error:", responseData);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Submission Error',
+                        text: responseData.error || 'Please try again later',
+                        confirmButtonColor: '#4cdcdf',
+                    });
+                }
+            } catch (error) {
+                console.error("Network error:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Network Error',
+                    text: 'Please check your internet connection',
+                    confirmButtonColor: '#4cdcdf',
+                });
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+            }
         });
-        
-        if (response.ok) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Message Sent!',
-                text: 'Thank you! We will contact you shortly.',
-                confirmButtonColor: '#4cdcdf',
-            });
-            form.reset();
-        } else {
-            const error = await response.json();
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: error.error || 'Please try again later',
-                confirmButtonColor: '#4cdcdf',
-            });
-        }
-    } catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Network Error',
-            text: 'Please check your internet connection',
-            confirmButtonColor: '#4cdcdf',
-        });
-    } finally {
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalText;
     }
-});
-
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
 });
 </script>
 </body>
