@@ -597,72 +597,67 @@
                     </div>
                 </div>
                 
-      <!-- Mobile-Optimized Contact Form Section -->
+      <!-- Contact Form Section -->
 <section id="contact" class="py-20 bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16">
             <!-- Left Column (Contact Info) -->
             <div class="mb-12 lg:mb-0">
                 <!-- ... (keep your existing contact info content) ... -->
             </div>
             
             <!-- Right Column (Form) -->
-            <div class="bg-gray-700 p-6 sm:p-8 rounded-xl shadow-lg">
-                <h3 class="text-xl sm:text-2xl font-semibold text-white mb-3">Send Us a Message</h3>
-                <p class="text-gray-400 mb-6 text-sm sm:text-base">We'll respond within 24 hours!</p>
+            <div class="bg-gray-700 p-8 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-white mb-2">Send Us a Message</h3>
+                <p class="text-gray-400 mb-6">We'll respond within 24 hours!</p>
                 
                 <!-- Formspree Form -->
-                <form id="contactForm" action="https://formspree.io/f/mwpodnpr" method="POST" class="space-y-5 sm:space-y-6">
-    <input type="hidden" name="_subject" value="New Contact Form Submission">
-    <input type="hidden" name="_replyto" value="noreply@yourdomain.com">
-    <!-- Rest of your form fields -->
-</form>
+                <form id="contactForm" action="https://formspree.io/f/mwpodnpr" method="POST" class="space-y-6">
                     <!-- Honeypot Field -->
                     <input type="text" name="_gotcha" style="display:none">
                     
                     <!-- Name Field -->
                     <div>
-                        <label for="name" class="block text-sm sm:text-base font-medium text-gray-300 mb-1">Full Name *</label>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name *</label>
                         <input 
                             type="text" 
                             id="name" 
                             name="name" 
                             required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 sm:py-3 sm:px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary text-sm sm:text-base"
+                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
                         >
                     </div>
                     
                     <!-- Email Field -->
                     <div>
-                        <label for="email" class="block text-sm sm:text-base font-medium text-gray-300 mb-1">Email *</label>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email *</label>
                         <input 
                             type="email" 
                             id="email" 
                             name="email" 
                             required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 sm:py-3 sm:px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary text-sm sm:text-base"
+                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
                         >
                     </div>
                     
                     <!-- Phone Field -->
                     <div>
-                        <label for="phone" class="block text-sm sm:text-base font-medium text-gray-300 mb-1">Phone</label>
+                        <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
                         <input 
                             type="tel" 
                             id="phone" 
                             name="phone" 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 sm:py-3 sm:px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary text-sm sm:text-base"
-                            inputmode="tel"
+                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
                         >
                     </div>
                     
                     <!-- Service Dropdown -->
                     <div>
-                        <label for="service" class="block text-sm sm:text-base font-medium text-gray-300 mb-1">Service Needed</label>
+                        <label for="service" class="block text-sm font-medium text-gray-300 mb-1">Service Needed</label>
                         <select 
                             id="service" 
                             name="service" 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 sm:py-3 sm:px-4 text-white focus:outline-none focus:ring-primary focus:border-primary text-sm sm:text-base"
+                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-primary focus:border-primary"
                         >
                             <option value="">Select a service</option>
                             <option value="Managed IT">Managed IT Services</option>
@@ -677,13 +672,13 @@
                     
                     <!-- Message Field -->
                     <div>
-                        <label for="message" class="block text-sm sm:text-base font-medium text-gray-300 mb-1">Message *</label>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message *</label>
                         <textarea 
                             id="message" 
                             name="message" 
                             rows="4" 
                             required 
-                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 sm:py-3 sm:px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary text-sm sm:text-base"
+                            class="block w-full bg-gray-800 border border-gray-600 rounded-md py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary"
                         ></textarea>
                     </div>
                     
@@ -696,7 +691,7 @@
                             required 
                             class="h-4 w-4 text-primary focus:ring-primary border-gray-600 rounded bg-gray-800"
                         >
-                        <label for="consent" class="ml-2 block text-xs sm:text-sm text-gray-300">
+                        <label for="consent" class="ml-2 block text-sm text-gray-300">
                             I consent to CommTec contacting me about my inquiry
                         </label>
                     </div>
@@ -705,10 +700,10 @@
                     <div>
                         <button 
                             type="submit" 
-                            class="w-full flex justify-center items-center py-3 px-4 sm:py-3 sm:px-6 border border-transparent rounded-md shadow-sm text-base sm:text-lg font-medium text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
                         >
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            <span>Send Message</span>
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
                         </button>
                     </div>
                 </form>
@@ -717,82 +712,11 @@
     </div>
 </section>
 
-          
-<!-- PASTE THIS RIGHT AFTER YOUR CONTACT FORM SECTION -->
-</section> <!-- Close the contact section -->
-
-<!-- Footer -->
-<footer class="bg-gray-900 text-gray-400 w-full">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="md:col-span-2">
-                <div class="flex items-center mb-4">
-                    <div class="bg-primary text-gray-900 p-2 rounded-lg mr-2">
-                        <i class="fas fa-network-wired text-xl"></i>
-                    </div>
-                    <span class="text-xl font-bold text-white">Comm<span class="text-primary">Tec</span></span>
-                </div>
-                <p class="text-sm mb-4">
-                    Las Vegas' premier provider of IT solutions, surveillance systems, and home theater installations.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div>
-                <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
-                <ul class="space-y-2">
-                    <li><a href="#services" class="text-sm hover:text-primary transition-colors">Managed IT</a></li>
-                    <li><a href="#services" class="text-sm hover:text-primary transition-colors">Video Surveillance</a></li>
-                    <li><a href="#services" class="text-sm hover:text-primary transition-colors">Network Setup</a></li>
-                    <li><a href="#services" class="text-sm hover:text-primary transition-colors">Data Management</a></li>
-                    <li><a href="#services" class="text-sm hover:text-primary transition-colors">Home Theaters</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
-                <ul class="space-y-2">
-                    <li><a href="#about" class="text-sm hover:text-primary transition-colors">About Us</a></li>
-                    <li><a href="#contact" class="text-sm hover:text-primary transition-colors">Contact</a></li>
-                    <li><a href="#" class="text-sm hover:text-primary transition-colors">Testimonials</a></li>
-                    <li><a href="#" class="text-sm hover:text-primary transition-colors">Careers</a></li>
-                    <li><a href="#" class="text-sm hover:text-primary transition-colors">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="mt-12 pt-8 border-t border-gray-800">
-            <div class="md:flex md:items-center md:justify-between">
-                <div class="text-center md:text-left">
-                    <p class="text-xs">
-                        &copy; 2025 CommTec. All rights reserved.
-                    </p>
-                </div>
-                <div class="mt-4 md:mt-0 flex justify-center md:justify-end space-x-6">
-                    <a href="#" class="text-xs hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-xs hover:text-primary transition-colors">Terms of Service</a>
-                    <a href="#" class="text-xs hover:text-primary transition-colors">Sitemap</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- JavaScript Bundle -->
+<!-- SweetAlert2 for Beautiful Alerts -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Form Submission Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
@@ -800,39 +724,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            console.log("Form submission initiated");
             
             const submitButton = form.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
             
+            // Show loading state
             submitButton.disabled = true;
             submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
             
             try {
-                console.log("Preparing FormData");
-                const formData = new FormData(form);
-                
-                // For debugging - log all form values
-                for (let [key, value] of formData.entries()) {
-                    console.log(key + ": " + value);
-                }
-                
-                console.log("Sending to Formspree...");
                 const response = await fetch(form.action, {
                     method: 'POST',
-                    body: formData,
-                    headers: { 
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
                     }
                 });
                 
-                console.log("Received response, status:", response.status);
-                const responseData = await response.json();
-                console.log("Full response:", responseData);
-                
                 if (response.ok) {
-                    console.log("Form submitted successfully");
                     Swal.fire({
                         icon: 'success',
                         title: 'Message Sent!',
@@ -841,16 +750,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     form.reset();
                 } else {
-                    console.error("Formspree error:", responseData);
+                    const error = await response.json();
                     Swal.fire({
                         icon: 'error',
-                        title: 'Submission Error',
-                        text: responseData.error || 'Please try again later',
+                        title: 'Error',
+                        text: error.error || 'Please try again later',
                         confirmButtonColor: '#4cdcdf',
                     });
                 }
             } catch (error) {
-                console.error("Network error:", error);
                 Swal.fire({
                     icon: 'error',
                     title: 'Network Error',
@@ -865,5 +773,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-</body>
-</html>
